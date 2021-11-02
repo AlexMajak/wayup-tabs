@@ -1,35 +1,37 @@
-const tabs = document.getElementById('tabs');
-const tabThree = document.getElementById('tabThree');
-const content = document.querySelectorAll('.content');
+const tabs = document.getElementById("tabs");
+const inThree = document.getElementById("inThree");
+const content = document.querySelectorAll(".content");
+const btnInThree = document.querySelectorAll(".tab-btn-inThree");
 
-console.log(tabs.children);
-console.log(tabThree.children);
+const changeClass = (element) => {
+  for (let i = 0; i < tabs.children.length; i++) {
+    tabs.children[i].classList.remove("active");
+  }
+  element.classList.add("active");
+};
 
-// console.log(contents.children);
+const changeClassInThree = (element) => {
+  for (let index = 0; index < inThree.children.length; index++) {
+    inThree.children[index].classList.remove("active");
+  }
+ element.classList.add("active");
+};
 
-const changeClass = element => {
-    for(let i = 0; i < tabs.children.length; i++) {
-        tabs.children[i].classList.remove('active');
+tabs.addEventListener("click", (event) => {
+  const currentTab = event.target.dataset.btn;
+  changeClass(event.target);
+ for (let i = 0; i < content.length; i++) {
+    content[i].classList.remove("active");
+    if (content[i].dataset.content == currentTab) {
+        content[i].classList.add("active");
     }
-    element.classList.add('active');
-}
+  }
+});
 
-const changeClassThree = element => {
-    for(let i = 0; i < tabThree.children.length; i++) {
-        tabThree.children[i].classList.remove('active');
-    }
-    // element.classList.add('active');
+inThree.addEventListener("click", (event) => {
+  const currentTabIn = event.target.dataset;
+  changeClassInThree(event.target);
+  if (btnInThree.dataset == currentTabIn) {
+    btnInThree.classList.add("active");
 }
-
-tabs.addEventListener('click', event => {
-const currentTab = event.target.dataset.btn;
-changeClassThree();
-changeClass(event.target);
-for (let i = 0; i < content.length; i++) {
-    content[i].classList.remove('active');
-    console.log(content[i].dataset.content);
-    if(content[i].dataset.content === currentTab) {
-        content[i].classList.add('active');
-    }
-}
-})
+});
